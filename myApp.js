@@ -3,6 +3,12 @@ var app = express();
 
 console.log("Hello World")
 
+app.use(function(req, res, next) {
+  var string = req.method + " " + req.path + " - " + req.ip;
+  console.log(string);
+  next();
+});
+
 // app.get("/", function(req, res) {
 //   res.send("Hello Express");
 // });
