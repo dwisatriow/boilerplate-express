@@ -36,6 +36,10 @@ app.get(
   }
 );
 
+app.get("/:word/echo", function (req, res) {
+  res.json({ echo: req.params.word });
+});
+
 app.use("/public", express.static(__dirname + "/public"));
 
 module.exports = app;
