@@ -51,7 +51,8 @@ app
     res.json({ name: req.query.first + " " + req.query.last });
   })
   .post(function (req, res) {
-    res.json({ name: req.query.first + " " + req.query.last });
+    var { first: firstName, last: lastName } = req.body;
+    res.json({ name: firstName + " " + lastName });
   });
 
 module.exports = app;
