@@ -17,6 +17,8 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "/views/index.html");
 });
 
+app.use("/public", express.static(__dirname + "/public"));
+
 app.get("/json", function (req, res) {
   if (process.env["MESSAGE_STYLE"] === "uppercase") {
     res.json({ message: "Hello json".toUpperCase() });
@@ -40,6 +42,13 @@ app.get("/:word/echo", function (req, res) {
   res.json({ echo: req.params.word });
 });
 
-app.use("/public", express.static(__dirname + "/public"));
+app
+  .route("/name")
+  .get(function (req, res) {
+    res.json({ name: req.query.first + " " + req.query.last });
+  })
+  .post(function (req, res) {
+    res.json({ name: req.query.first + " " + req.query.last });
+  });
 
 module.exports = app;
